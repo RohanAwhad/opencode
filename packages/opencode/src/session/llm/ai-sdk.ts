@@ -320,6 +320,7 @@ export function toLLMEvents(
       })
 
     case "error":
+      if (isOrphanStreamStateError(event.error)) return Effect.succeed([])
       return Effect.fail(event.error)
 
     case "abort":
